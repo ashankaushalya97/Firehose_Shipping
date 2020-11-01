@@ -1,0 +1,138 @@
+.site-layout-content {
+  background: #fff;
+  padding: 24px;
+  min-height: 280px;
+}
+#components-layout-demo-top .logo {
+  width: 120px;
+  height: 31px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 16px 24px 16px 0;
+  float: left;
+}
+.container {
+  padding: 100px 50px 100px 50px ;
+}
+.content {
+    min-height: 100px;
+    padding: 5px;
+}
+.btn-input {
+    /* margin-top: 5px; */
+    margin-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.btn-search {
+    width: 95%;
+    height: 50px !important ;
+}
+.btn-search-container {
+    /* background-color:#85C1E9;  */
+    min-height:100px;
+    align-items: center;
+    justify-content: center;
+    padding-top: 1%;
+    /* display: block;
+    margin-right: auto;
+    margin-left: auto; */
+}
+.btn-clear {
+    width: 95%;
+}
+.custom-text {
+    display: block;
+    font-weight: bold;
+}
+.title {
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #515A5A;
+}
+.sub-title {
+    color: #515A5A;
+    font-size: 12px;
+    font-weight:600; 
+    text-align:right;
+    position: absolute;
+    bottom: 0; 
+    right: 0;
+    padding-right: 10px;
+}
+.title-container {
+    background-color: #D5DBDB;
+}
+.btn-text {
+    font-weight: bold;
+}
+.search-text {
+    width: 100% !important;
+    margin: 2px !important ;
+}
+.search-form {
+    margin: 5px;
+}
+.table-wrapper {
+    margin-top: 10px ;
+    margin-bottom: 10px ;
+    min-height: 370px;
+}
+.inbound-table{
+    margin-right: 5px;
+}
+.outbound-table{
+    margin-left: 5px;
+}
+.table-header{
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    /* top: 50%; */
+}
+.completed {
+    text-align: left;
+}
+.pending {
+    text-align: right;
+}
+.table-status-text {
+    font-size: 12px;
+}
+.footer-container{
+    background-color: #D5DBDB;
+    padding: 5px;
+    /* width: 50% !important; 
+    margin: 0 auto !important; */
+}
+.footer-data-text {
+    font-weight: normal;
+    font-size: 12px;
+    margin-left: 10px;
+    text-align: right;
+}
+.footer-col {
+    width: 50% !important; 
+    margin: 0 auto !important;
+    text-align: center;
+}
+.table-row {
+    cursor: pointer;
+}
+.btn-text-checkin {
+    font-size: 8px;
+    padding: 0;
+    margin: 0 auto;
+}
+.sub-title-container{
+    position: relative;
+}
+
