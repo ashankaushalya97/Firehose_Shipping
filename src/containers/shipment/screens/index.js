@@ -11,6 +11,7 @@ import moment from 'moment';
 
 //components
 import OrderCard from "./order-card";
+import ItemCard from "./item-card";
 
 const Shipment = () => {
     const [selectedRow,setSelectedRow] = useState();
@@ -229,11 +230,11 @@ const Shipment = () => {
                             <OrderCard />
                         </Row>
                     </Col>
-                    {/* <Col span={20} style={{height:"120px",backgroundColor:"yellow",display:"inline"}}>
+                    <Col span={20} style={{height:"120px",display:"inline"}}>
                         <Row gutter={16}>
-                            <Col span={4} style={{height:"100px",backgroundColor:"#566573",margin:"10px 5px 10px 5px",padding:0,display:"inline"}}></Col>
+                            <ItemCard />
                         </Row>
-                    </Col> */}
+                    </Col>
 
                 </Row>
             </section>
