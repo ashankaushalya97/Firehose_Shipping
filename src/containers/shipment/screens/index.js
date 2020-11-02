@@ -9,6 +9,9 @@ import { useEffect, useState } from 'react';
 import { getCheckIn,getPdfUrl } from '../selectors';
 import moment from 'moment';
 
+//components
+import OrderCard from "./order-card";
+
 const Shipment = () => {
     const [selectedRow,setSelectedRow] = useState();
     const [customer,setCustomer] = useState('');
@@ -212,7 +215,7 @@ const Shipment = () => {
                     <Col span={4} style={{height:"100px",backgroundColor:"#D5DBDB"}}></Col>
                     <Col span={4} style={{height:"100px",backgroundColor:"#D5DBDB"}}></Col>
                     <Col span={8} className="title-container" style={{height:"100px",backgroundColor:"#D5DBDB"}}>
-                    {/* <Col className="title-container" span={12}> */}
+                     {/*<Col className="title-container" span={12}> */}
                         <h2 className="title">SHIPPING CONFIRMATION PAGE</h2>
                     {/* </Col> */}
                     </Col>
@@ -223,8 +226,7 @@ const Shipment = () => {
                 <Row >
                     <Col span={4} style={{minHeight:"85vh",backgroundColor:"#D5DBDB"}}>
                         <Row gutter={16} justify="space-around" align="middle">
-                            <Col span={20} style={{height:"100px",backgroundColor:"#566573",margin:"10px 5px 10px 5px",padding:0}}></Col>
-                            <Col span={20} style={{height:"100px",backgroundColor:"#566573",margin:"10px 5px 10px 5px",padding:0}}></Col>
+                            <OrderCard />
                         </Row>
                     </Col>
                     {/* <Col span={20} style={{height:"120px",backgroundColor:"yellow",display:"inline"}}>
