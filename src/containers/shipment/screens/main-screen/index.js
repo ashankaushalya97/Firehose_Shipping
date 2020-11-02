@@ -1,4 +1,4 @@
-import {Button, Col, Input, Layout, Row} from 'antd';
+import {Button, Col, Input, Layout, Row,Ta} from 'antd';
 import './styles.css'
 import "antd/dist/antd.css";
 import {useDispatch, useSelector} from 'react-redux';
@@ -179,14 +179,28 @@ const Shipment = () => {
         <>
             <section>
                 <Layout>
-                    <Header className={"mainHeader"}>
-                        <Row>
+                    {/* <Header className={"mainHeader"}> */}
+                        {/* <Row>
                             <Col span={10} style={{backgroundColor:'red',height:'100%'}} >
                                 <h1 className={"main-heading"}>SHIPPING CONFIRMATION PAGE</h1>
                             </Col>    
-                        </Row>
-                        
-                    </Header>
+                        </Row> */}
+                        <Layout>
+                            <Row>
+                                {/* <Col span={4} style={{minHeight:"100vh",backgroundColor:"#D5DBDB"}}></Col> */}
+                                <Col span={4} style={{height:"100px",backgroundColor:"#D5DBDB"}}></Col>
+                                <Col span={4} style={{height:"100px",backgroundColor:"#D5DBDB"}}></Col>
+                                <Col span={8} className="title-container" style={{height:"100px",backgroundColor:"#D5DBDB"}}>
+                                {/* <Col className="title-container" span={12}> */}
+                                    <h2 className="title">SHIPPING CONFIRMATION PAGE</h2>
+                                {/* </Col> */}
+                                </Col>
+                                <Col span={8} className="sub-title-container" style={{height:"100px",backgroundColor:"#D5DBDB"}}>
+                                    <div className="sub-title" >ENTRY SCREEN</div>
+                                </Col>
+                            </Row>
+                        </Layout>
+                    {/* </Header> */}
                     <Layout>
                         <Sider className = {"sidebar"}>
                             <Col className = {"order-card-container"}>
@@ -201,10 +215,46 @@ const Shipment = () => {
                             <Button type="primary" shape="round" className={"review-btn"}>
                                 <span className="btn-text">REVIEW BOL</span></Button>
                         </Sider>
-                        {/* <BolScreen/> */}
-                        <EntryScreen/>
+                        <Layout>
+                            {/* <Table
+                                columns={columns}
+                                // dataSource={outbound ? outbound : outboundData}
+                                bordered
+                                pagination={false}
+                                size="small"
+                                rowClassName="table-row"
+                                scroll={{y: 100, x: 'max-content'}}
+                                className = "tableDetails"
+                            /> */}
+                            <EntryScreen/>
+                        </Layout>
+
+                        {/* <EntryScreen/> */}
                     </Layout>
                 </Layout>
+                {/* <Row gutter={8}>
+                    <Col span={4} style={{height:"100px",backgroundColor:"#D5DBDB"}}></Col>
+                    <Col span={4} style={{height:"100px",backgroundColor:"#D5DBDB"}}></Col>
+                    <Col span={8} className="title-container" style={{height:"100px",backgroundColor:"#D5DBDB"}}>
+                        <h2 className="title">SHIPPING CONFIRMATION PAGE</h2>
+                    </Col>
+                    <Col span={8} className="sub-title-container" style={{height:"100px",backgroundColor:"#D5DBDB"}}>
+                        <div className="sub-title" >ENTRY SCREEN</div>
+                    </Col>
+                </Row>
+                <Row >
+                    <Col span={4} style={{minHeight:"85vh",backgroundColor:"#D5DBDB"}}>
+                        <Row gutter={16} justify="space-around" align="middle">
+                            <Col span={20} style={{height:"100px",backgroundColor:"#566573",margin:"10px 5px 10px 5px",padding:0}}></Col>
+                            <Col span={20} style={{height:"100px",backgroundColor:"#566573",margin:"10px 5px 10px 5px",padding:0}}></Col>
+                        </Row>
+                    </Col>
+                    <Col span={20} style={{height:"120px",backgroundColor:"yellow",display:"inline"}}>
+                        <Row gutter={16}>
+                            <Col span={4} style={{height:"100px",backgroundColor:"#566573",margin:"10px 5px 10px 5px",padding:0,display:"inline"}}></Col>
+                        </Row>
+                    </Col>
+                </Row> */}
             </section>
         </>
     );

@@ -162,7 +162,7 @@
     margin: 20px !important;
 }
 .col-scroll{
-    /* background-color: rebeccapurple; */
     overflow-y: scroll;
     height: 60vh;
+    /* overflow: hidden; */
 }

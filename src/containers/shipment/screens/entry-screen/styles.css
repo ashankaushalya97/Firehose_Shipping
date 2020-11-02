@@ -16,3 +16,17 @@
 .table-wrapper .tableDetails{
     padding: 20px;
 }
+.item-container{
+    /* background-color: red; */
+    /* overflow-x: scroll; */
+    /* max-height: 5vh; */
+    overflow-x: auto !important;
+    overflow-y: hidden;
+    white-space: nowrap !important;
+    /* width: 100vw; */
+    width: 1000px;
+    /* background-color: blue;  */
+    height: 150px;
+    /* display: flex; */
+    /* position: relative; */
+}

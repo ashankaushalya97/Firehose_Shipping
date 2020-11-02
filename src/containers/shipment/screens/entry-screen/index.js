@@ -50,19 +50,23 @@ const EntryScreen = () => {
     const {Content} = Layout;
 
     return(
-        <Content className={"mainContent"}>
-            <Col span={20} className={"topDetailsRow"}>
-                <Row gutter={16}>
-                    <ItemCard/>
-                    <ItemCard/>
-                    <ItemCard/>
+        <>
+        {/* <Content className={"mainContent"} style={{backgroundColor:'lightcyan'}}> */}
+            {/* <Col span={20} className={"topDetailsRow"}> */}
+                <Row gutter={16} className="item-container">
+                        <ItemCard/>
+                        <ItemCard/>
+                        <ItemCard/>
+                        <ItemCard/>
+                        <ItemCard/>
+                        <ItemCard/>
                 </Row>
-            </Col>
+            {/* </Col> */}
 
             <ItemDetails/>
 
             <Row gutter={16} style={{minHeight:"200px"}}>
-                <Col span={20} >
+                <Col span={24} >
                     <div className="table-wrapper outbound-table">
                         <Table
                             columns={columns}
@@ -79,7 +83,8 @@ const EntryScreen = () => {
             </Row>
 
             <OrderLevelNotes />
-        </Content>
+         {/* </Content> */}
+        </>
     )
 }
 export default EntryScreen
