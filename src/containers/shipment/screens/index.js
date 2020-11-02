@@ -8,8 +8,6 @@ import {getCheckinData,saveCheckin,requestPdf} from '../action';
 import { useEffect, useState } from 'react';
 import { getCheckIn,getPdfUrl } from '../selectors';
 import moment from 'moment';
-
-//components
 import OrderCard from "./order-card";
 import ItemCard from "./item-card";
 
@@ -26,10 +24,10 @@ const Shipment = () => {
     let date = new Date();
 
     const dispatch = useDispatch();
-    
+
     let checkInData = useSelector(getCheckIn);
     let pdfUrl = useSelector(getPdfUrl);
-    
+
     let inboundData = [];
     let outboundData = [];
 
@@ -47,13 +45,13 @@ const Shipment = () => {
     }
     const handleSearch = () => {
         if(customer || orderNo || poNo || confNo){
-            setInbound(inboundData.filter(n => n.customer.toLowerCase().includes(customer.toLowerCase()) 
+            setInbound(inboundData.filter(n => n.customer.toLowerCase().includes(customer.toLowerCase())
                 && n.conf_no.includes(confNo) && n.orders.some(m => m.order_no.toLowerCase().includes(orderNo.toLowerCase()) && m.po_no.toLowerCase().includes(poNo.toLowerCase()))
             ));
-            setOutbound(outboundData.filter(n => n.customer.toLowerCase().includes(customer.toLowerCase()) 
+            setOutbound(outboundData.filter(n => n.customer.toLowerCase().includes(customer.toLowerCase())
                 && n.conf_no.includes(confNo) && n.orders.some(m => m.order_no.toLowerCase().includes(orderNo.toLowerCase()) && m.po_no.toLowerCase().includes(poNo.toLowerCase()))
-            ));  
-        }  
+            ));
+        }
     }
     const handleClear = () => {
         clearFields();
@@ -63,16 +61,16 @@ const Shipment = () => {
         dispatch(getCheckinData());
     }
     const handleSubmit = (record) => {
-        let obj = { 
-            'conf_no':record.conf_no, 
+        let obj = {
+            'conf_no':record.conf_no,
             'checkin': {
-                'checkin_no': '' , 
-                'checkin_time': moment(date).format('HH:mm'), 
-                'checkin_date': moment(date).format('YYYY-MM-DD'), 
-                'carrier': carrier, 
-                'truck_no': truck, 
+                'checkin_no': '' ,
+                'checkin_time': moment(date).format('HH:mm'),
+                'checkin_date': moment(date).format('YYYY-MM-DD'),
+                'carrier': carrier,
+                'truck_no': truck,
             }
-           }
+        }
         dispatch(saveCheckin(obj));
         handleRefresh();
     }
@@ -90,60 +88,60 @@ const Shipment = () => {
     }
     const columns = [
         {
-          title: 'Time',
-          dataIndex: 'time',
+            title: 'Time',
+            dataIndex: 'time',
         },
         {
-          title: 'APPT CONF. NO',
-          className: 'column-money',
-          dataIndex: 'conf_no',
-          align: 'right',
+            title: 'APPT CONF. NO',
+            className: 'column-money',
+            dataIndex: 'conf_no',
+            align: 'right',
         },
         {
-          title: 'CUSTOMER',
-          dataIndex: 'customer',
+            title: 'CUSTOMER',
+            dataIndex: 'customer',
         },
         {
-          title: 'CARRIER',
-          dataIndex: 'checkin',
-          align: 'center',
-        //   render: (text,record,index) => (!record.checkInNo? <Input defaultValue={text} bordered={false}/> : <span>{text}</span>)
-          render: (data,record,index) => (record.checkin? <span style={{textAlign:'center',justifyContent:'center'}} >{data?.carrier}</span>:
-                    <Input  value={carrier} bordered={false} disabled={record.checkin} onChange={(e)=>{setCarrier(e.target.value)}}/>)
+            title: 'CARRIER',
+            dataIndex: 'checkin',
+            align: 'center',
+            //   render: (text,record,index) => (!record.checkInNo? <Input defaultValue={text} bordered={false}/> : <span>{text}</span>)
+            render: (data,record,index) => (record.checkin? <span style={{textAlign:'center',justifyContent:'center'}} >{data?.carrier}</span>:
+                <Input  value={carrier} bordered={false} disabled={record.checkin} onChange={(e)=>{setCarrier(e.target.value)}}/>)
         },
         {
-          title: 'TRUCK',
-          dataIndex: 'checkin',
-        render: (data,record,index) => (record.checkin? <span>{data?.truck_no}</span> :
-                    <Input value={truck} bordered={false} disabled={record.checkin} onChange={(e)=>{setTruck(e.target.value)}} />)
+            title: 'TRUCK',
+            dataIndex: 'checkin',
+            render: (data,record,index) => (record.checkin? <span>{data?.truck_no}</span> :
+                <Input value={truck} bordered={false} disabled={record.checkin} onChange={(e)=>{setTruck(e.target.value)}} />)
         },
         {
-          title: 'CHECK-IN NO',
-          dataIndex: 'checkin',
-          render: (data,record,index) => data? data?.checkin_no:''
+            title: 'CHECK-IN NO',
+            dataIndex: 'checkin',
+            render: (data,record,index) => data? data?.checkin_no:''
         },
         {
-          title: 'PENDING',
-          dataIndex: 'pending',
-          render: (value,record,index) => (!record?.checkin?.checkin_no ? <Button disabled={!(carrier && truck)} onClick={(e)=>{e.stopPropagation();handleSubmit(record)}} type="primary" shape="round" style={{ background: "#F4D03F", borderColor: "#FCF3CF",color:"#000000"}}><span className="btn-text-checkin">CHECK IN</span></Button> : null)
+            title: 'PENDING',
+            dataIndex: 'pending',
+            render: (value,record,index) => (!record?.checkin?.checkin_no ? <Button disabled={!(carrier && truck)} onClick={(e)=>{e.stopPropagation();handleSubmit(record)}} type="primary" shape="round" style={{ background: "#F4D03F", borderColor: "#FCF3CF",color:"#000000"}}><span className="btn-text-checkin">CHECK IN</span></Button> : null)
         },
-      ];
+    ];
 
     const TableHeader = ({type}) => {
         return(
-        <>
-         <Row>
-            <Col span={6} className="completed">
-               <span className="table-status-text">COMPLETED: {type==='i'?inboundData.filter(m=> m?.checkin).length:outboundData.filter(m=> m?.checkin).length}</span>
-            </Col>
-            <Col span={12}>
-                <h3 className="table-header">{type==='i'?'INBOUND':'OUTBOUND'}</h3>
-            </Col>
-            <Col span={6} className="pending">
-                <span className="table-status-text">PENDING: {type==='i'?inboundData.filter(m=> !m?.checkin).length:outboundData.filter(m=> !m?.checkin).length}</span>
-            </Col>
-         </Row>
-        </>
+            <>
+                <Row>
+                    <Col span={6} className="completed">
+                        <span className="table-status-text">COMPLETED: {type==='i'?inboundData.filter(m=> m?.checkin).length:outboundData.filter(m=> m?.checkin).length}</span>
+                    </Col>
+                    <Col span={12}>
+                        <h3 className="table-header">{type==='i'?'INBOUND':'OUTBOUND'}</h3>
+                    </Col>
+                    <Col span={6} className="pending">
+                        <span className="table-status-text">PENDING: {type==='i'?inboundData.filter(m=> !m?.checkin).length:outboundData.filter(m=> !m?.checkin).length}</span>
+                    </Col>
+                </Row>
+            </>
         )
     };
 
@@ -216,9 +214,9 @@ const Shipment = () => {
                     <Col span={4} style={{height:"100px",backgroundColor:"#D5DBDB"}}></Col>
                     <Col span={4} style={{height:"100px",backgroundColor:"#D5DBDB"}}></Col>
                     <Col span={8} className="title-container" style={{height:"100px",backgroundColor:"#D5DBDB"}}>
-                     {/*<Col className="title-container" span={12}> */}
+                        {/* <Col className="title-container" span={12}> */}
                         <h2 className="title">SHIPPING CONFIRMATION PAGE</h2>
-                    {/* </Col> */}
+                        {/* </Col> */}
                     </Col>
                     <Col span={8} className="sub-title-container" style={{height:"100px",backgroundColor:"#D5DBDB"}}>
                         <div className="sub-title" >ENTRY SCREEN</div>
@@ -227,12 +225,16 @@ const Shipment = () => {
                 <Row >
                     <Col span={4} style={{minHeight:"85vh",backgroundColor:"#D5DBDB"}}>
                         <Row gutter={16} justify="space-around" align="middle">
-                            <OrderCard />
+                            <OrderCard/>
+                            <OrderCard/>
+                            <OrderCard/>
                         </Row>
                     </Col>
                     <Col span={20} style={{height:"120px",display:"inline"}}>
                         <Row gutter={16}>
-                            <ItemCard />
+                            <ItemCard/>
+                            <ItemCard/>
+                            <ItemCard/>
                         </Row>
                     </Col>
 
