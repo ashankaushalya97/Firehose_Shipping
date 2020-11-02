@@ -1,5 +1,5 @@
 // import {Layout} from 'antd';
-import { Input,Button,Row,Col,Table } from 'antd';
+import { Input,Button,Row,Col,Table ,Card} from 'antd';
 import './styles.css'
 import "antd/dist/antd.css";
 import FormStatus from '../components/FormStatus';
@@ -208,7 +208,8 @@ const Shipment = () => {
                 </div> */}
 
                 <Row gutter={8}>
-                    <Col span={4} style={{minHeight:"100vh",backgroundColor:"#D5DBDB"}}></Col>
+                    {/* <Col span={4} style={{minHeight:"100vh",backgroundColor:"#D5DBDB"}}></Col> */}
+                    <Col span={4} style={{height:"100px",backgroundColor:"#D5DBDB"}}></Col>
                     <Col span={4} style={{height:"100px",backgroundColor:"#D5DBDB"}}></Col>
                     <Col span={8} className="title-container" style={{height:"100px",backgroundColor:"#D5DBDB"}}>
                     {/* <Col className="title-container" span={12}> */}
@@ -218,6 +219,20 @@ const Shipment = () => {
                     <Col span={8} className="sub-title-container" style={{height:"100px",backgroundColor:"#D5DBDB"}}>
                         <div className="sub-title" >ENTRY SCREEN</div>
                     </Col>
+                </Row>
+                <Row >
+                    <Col span={4} style={{minHeight:"85vh",backgroundColor:"#D5DBDB"}}>
+                        <Row gutter={16} justify="space-around" align="middle">
+                            <Col span={20} style={{height:"100px",backgroundColor:"#566573",margin:"10px 5px 10px 5px",padding:0}}></Col>
+                            <Col span={20} style={{height:"100px",backgroundColor:"#566573",margin:"10px 5px 10px 5px",padding:0}}></Col>
+                        </Row>
+                    </Col>
+                    {/* <Col span={20} style={{height:"120px",backgroundColor:"yellow",display:"inline"}}>
+                        <Row gutter={16}>
+                            <Col span={4} style={{height:"100px",backgroundColor:"#566573",margin:"10px 5px 10px 5px",padding:0,display:"inline"}}></Col>
+                        </Row>
+                    </Col> */}
+
                 </Row>
             </section>
         </>
