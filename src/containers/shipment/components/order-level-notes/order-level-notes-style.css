@@ -1,0 +1,23 @@
+.text-area{
+    width: 60%;
+    margin: 20px;
+}
+
+.row1{
+    padding: 20px;
+}
+
+.text-field{
+    background-color: #D5D5D5;
+}
+
+.btn-no-tag{
+    background-color: #515A5A;
+    border-color:#000000;
+}
+
+.btn-no-tag:hover{
+    background-color: #515A5A;
+    background-color: #515A5A;
+
+}

@@ -1,0 +1,12 @@
+.item-details{
+    height: 120px;
+    display: inline;
+}
+
+.item-details .detail-row{
+    min-height:50px;
+}
+.detail-row-col{
+    width: 100px;
+    padding: 20px 80px 10px 80px;
+}

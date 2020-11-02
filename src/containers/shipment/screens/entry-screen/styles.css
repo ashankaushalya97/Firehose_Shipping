@@ -1,0 +1,18 @@
+.mainContent{
+    background-color: white;
+}
+.topDetailsRow{
+    height: 120px;
+    display: inline;
+}
+.tblWrapperRow{
+    min-height: 200px;
+}
+
+.table-wrapper{
+    min-height: 265px;
+}
+
+.table-wrapper .tableDetails{
+    padding: 20px;
+}

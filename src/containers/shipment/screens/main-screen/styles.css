@@ -136,3 +136,28 @@
     position: relative;
 }
 
+.mainHeader{
+    background-color: #D5D5D5 !important;
+    min-height: 5vh;
+}
+
+.main-heading{
+    font-weight: 650;
+    color: #5E5E5E;
+    font-size: 20px;
+    text-align: center;
+}
+
+.sidebar{
+    background-color: #D5D5D5 !important;
+}
+
+.order-card-container{
+    min-height: 600px;
+}
+
+.review-btn{
+    background-color: #515A5A !important;
+    border-color: #000000 !important;
+    margin: 20px !important;
+}

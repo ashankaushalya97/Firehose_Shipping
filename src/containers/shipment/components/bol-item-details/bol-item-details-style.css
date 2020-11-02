@@ -1,0 +1,16 @@
+.col1{
+    height: 100px !important;
+    background-color: #D5D5D5 !important;
+    margin: 10px 5px 10px 20px !important;
+    padding: 0 !important;
+    display: inline !important;
+}
+
+.col2{
+    height: 100px;
+    background-color: white;
+    color: black;
+    margin: 10px 5px 10px 20px;
+    padding: 0;
+    display: inline;
+}
