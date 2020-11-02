@@ -89,54 +89,70 @@ const Shipment = () => {
     }
     const columns = [
         {
-            title: 'Time',
+            title: 'TYPE',
             dataIndex: 'time',
         },
         {
-            title: 'APPT CONF. NO',
+            title: 'TRACKING UNIT',
             className: 'column-money',
             dataIndex: 'conf_no',
             align: 'right',
         },
         {
-            title: 'CUSTOMER',
+            title: 'ITEM CODE',
             dataIndex: 'customer',
         },
         {
-            title: 'CARRIER',
-            dataIndex: 'checkin',
-            align: 'center',
-            //   render: (text,record,index) => (!record.checkInNo? <Input defaultValue={text} bordered={false}/> : <span>{text}</span>)
-            render: (data, record, index) => (record.checkin ?
-                <span style={{textAlign: 'center', justifyContent: 'center'}}>{data?.carrier}</span> :
-                <Input value={carrier} bordered={false} disabled={record.checkin} onChange={(e) => {
-                    setCarrier(e.target.value)
-                }}/>)
+            title: 'EXPIRY',
+            dataIndex: 'customer',
         },
         {
-            title: 'TRUCK',
-            dataIndex: 'checkin',
-            render: (data, record, index) => (record.checkin ? <span>{data?.truck_no}</span> :
-                <Input value={truck} bordered={false} disabled={record.checkin} onChange={(e) => {
-                    setTruck(e.target.value)
-                }}/>)
+            title: 'REQ PICK QTY',
+            dataIndex: 'customer',
         },
         {
-            title: 'CHECK-IN NO',
-            dataIndex: 'checkin',
-            render: (data, record, index) => data ? data?.checkin_no : ''
+            title: 'PICKED',
+            dataIndex: 'customer',
         },
         {
-            title: 'PENDING',
-            dataIndex: 'pending',
-            render: (value, record, index) => (!record?.checkin?.checkin_no ?
-                <Button disabled={!(carrier && truck)} onClick={(e) => {
-                    e.stopPropagation();
-                    handleSubmit(record)
-                }} type="primary" shape="round"
-                        style={{background: "#F4D03F", borderColor: "#FCF3CF", color: "#000000"}}><span
-                    className="btn-text-checkin">CHECK IN</span></Button> : null)
+            title: 'NOTES',
+            dataIndex: 'customer',
         },
+        // {
+        //     title: 'CARRIER',
+        //     dataIndex: 'checkin',
+        //     align: 'center',
+        //     //   render: (text,record,index) => (!record.checkInNo? <Input defaultValue={text} bordered={false}/> : <span>{text}</span>)
+        //     render: (data, record, index) => (record.checkin ?
+        //         <span style={{textAlign: 'center', justifyContent: 'center'}}>{data?.carrier}</span> :
+        //         <Input value={carrier} bordered={false} disabled={record.checkin} onChange={(e) => {
+        //             setCarrier(e.target.value)
+        //         }}/>)
+        // },
+        // {
+        //     title: 'TRUCK',
+        //     dataIndex: 'checkin',
+        //     render: (data, record, index) => (record.checkin ? <span>{data?.truck_no}</span> :
+        //         <Input value={truck} bordered={false} disabled={record.checkin} onChange={(e) => {
+        //             setTruck(e.target.value)
+        //         }}/>)
+        // },
+        // {
+        //     title: 'CHECK-IN NO',
+        //     dataIndex: 'checkin',
+        //     render: (data, record, index) => data ? data?.checkin_no : ''
+        // },
+        // {
+        //     title: 'PENDING',
+        //     dataIndex: 'pending',
+        //     render: (value, record, index) => (!record?.checkin?.checkin_no ?
+        //         <Button disabled={!(carrier && truck)} onClick={(e) => {
+        //             e.stopPropagation();
+        //             handleSubmit(record)
+        //         }} type="primary" shape="round"
+        //                 style={{background: "#F4D03F", borderColor: "#FCF3CF", color: "#000000"}}><span
+        //             className="btn-text-checkin">CHECK IN</span></Button> : null)
+        // },
     ];
 
     const TableHeader = ({type}) => {
@@ -164,21 +180,29 @@ const Shipment = () => {
             <section>
                 <Layout>
                     <Header className={"mainHeader"}>
-                        <h1 className={"main-heading"}>SHIPPING CONFIRMATION PAGE</h1>
+                        <Row>
+                            <Col span={10} style={{backgroundColor:'red',height:'100%'}} >
+                                <h1 className={"main-heading"}>SHIPPING CONFIRMATION PAGE</h1>
+                            </Col>    
+                        </Row>
+                        
                     </Header>
                     <Layout>
                         <Sider className = {"sidebar"}>
                             <Col className = {"order-card-container"}>
-                                <Row gutter={16}>
-                                    <OrderCard/>
-                                    <OrderCard/>
-                                    <OrderCard/>
+                                <Row gutter={16} className="col-scroll" >
+                                        <OrderCard/>
+                                        <OrderCard/>
+                                        <OrderCard/>
+                                        <OrderCard/>
+                                        <OrderCard/>
                                 </Row>
                             </Col>
                             <Button type="primary" shape="round" className={"review-btn"}>
                                 <span className="btn-text">REVIEW BOL</span></Button>
                         </Sider>
-                        <BolScreen/>
+                        {/* <BolScreen/> */}
+                        <EntryScreen/>
                     </Layout>
                 </Layout>
             </section>
