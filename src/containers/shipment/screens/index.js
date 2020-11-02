@@ -8,6 +8,8 @@ import {getCheckIn, getPdfUrl} from '../selectors';
 import moment from 'moment';
 import OrderCard from "./order-card";
 import ItemCard from "./item-card";
+import ItemDetails from "./item-details";
+import OrderLevelNotes from "./order-level-notes";
 
 const Shipment = () => {
     const [selectedRow, setSelectedRow] = useState();
@@ -22,7 +24,6 @@ const Shipment = () => {
     let date = new Date();
 
     const {Header, Footer, Sider, Content} = Layout;
-    const {TextArea} = Input;
 
     const dispatch = useDispatch();
 
@@ -225,17 +226,22 @@ const Shipment = () => {
 
                 <Layout>
                     <Header style={{backgroundColor: "#D5D5D5", minHeight: "5vh"}}>
-                        <h1 style={{fontWeight:"650",color:"#5E5E5E",fontSize:"20px", textAlign: "center"}}>SHIPPING CONFIRMATION PAGE</h1>
+                        <h1 style={{
+                            fontWeight: "650",
+                            color: "#5E5E5E",
+                            fontSize: "20px",
+                            textAlign: "center"
+                        }}>SHIPPING CONFIRMATION PAGE</h1>
                     </Header>
-                    <Layout>
+                    <Layout style={{minHeight: "100vh"}}>
                         <Sider style={{backgroundColor: "#D5D5D5", minHeight: "100vh"}}>
-                            <Row gutter={16}>
+                            <Col style={{minHeight: "600px"}}><Row gutter={16}>
                                 <OrderCard/>
                                 <OrderCard/>
                                 <OrderCard/>
-                            </Row>
+                            </Row></Col>
                             <Button className="btn-input" type="primary" shape="round"
-                                    style={{background: "#515A5A", borderColor: "#000000", margin:"20px"}}>
+                                    style={{background: "#515A5A", borderColor: "#000000", margin: "20px"}}>
                                 <span className="btn-text">REVIEW BOL</span></Button>
                         </Sider>
                         <Content style={{backgroundColor: "white"}}>
@@ -249,19 +255,10 @@ const Shipment = () => {
                                 </Row>
                             </Col>
 
-                            <Col span={20} style={{height: "120px", display: "inline"}}>
-                <span style={{width: "100px", padding: "100px 80px 100px 80px",}}>
-                    <strong>CUSTOMER CODE</strong>
-                </span><span style={{width: "100px", padding: "100px 80px 200px 80px"}}>
-                    DIVISION CODE
-                </span><span style={{width: "100px", padding: "100px 80px 200px 80px"}}>
-                    CHECK-IN NO
-                </span><span style={{width: "100px", padding: "100px 80px 200px 80px"}}>
-                    CHECK-IN DATE TIME
-                </span>
-                            </Col>
-                            <Row gutter={16}>
-                                <div className="table-wrapper outbound-table">
+                            <ItemDetails/>
+
+                            <Row gutter={16} style={{minHeight:"200px"}}>
+                                <div className="table-wrapper outbound-table" style={{minHeight:"265px"}}>
                                     <Table
                                         style={{padding: "20px"}}
                                         columns={columns}
@@ -278,30 +275,7 @@ const Shipment = () => {
                                 </div>
                             </Row>
 
-                            <TextArea rows={4} style={{width:"60%", margin:"20px"}} placeHolder={"Order Level Notes"}/>
-                            <Row style={{padding: "20px"}}>
-                                <Col span={6}>
-                                    <Input placeholder="TRACKING UNIT NO" style={{backgroundColor:"#D5D5D5"}} />
-                                </Col>
-
-                                <Col span={6}>
-                                    <Button className="btn-input" type="primary" shape="round"
-                                           style={{background: "#515A5A", borderColor: "#000000 ", width: "150px"}}
-                                           onClick={handleClear}><span
-                                    className="btn-text">ADD RECORD</span></Button>
-                                </Col>
-
-                                <Col span={6}>
-                                    <Input placeholder="EXPIRY DATE" style={{backgroundColor:"#D5D5D5"}} />
-                                </Col>
-
-                                <Col span={6}>
-                                    <Button className="btn-input" type="primary" shape="round"
-                                            style={{background: "#515A5A", borderColor: "#000000 ", width: "150px"}}
-                                            onClick={handleClear}><span
-                                        className="btn-text">ADD NO TAG</span></Button>
-                                </Col>
-                            </Row>
+                        <OrderLevelNotes />
                         </Content>
                     </Layout>
                 </Layout>
