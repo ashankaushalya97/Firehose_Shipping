@@ -2,9 +2,8 @@ import {Button, Col, Input, Layout, Row,Ta} from 'antd';
 import './styles.css'
 import "antd/dist/antd.css";
 import {useDispatch, useSelector} from 'react-redux';
-import {getCheckinData, saveCheckin} from '../../action';
 import {useEffect, useState} from 'react';
-import {getCheckIn, getPdfUrl} from '../../selectors';
+import {getShipment} from '../../selectors';
 import moment from 'moment';
 import OrderCard from "../../components/order-card/order-card";
 import EntryScreen from "../entry-screen";
@@ -12,9 +11,16 @@ import BolScreen from "../bol-screen";
 
 const Shipment = () => {
     const [evtType,setEvtType] = useState('entry');
+    const [items,setItems] = useState([]);
+    const [order,setOrder] = useState();
+    const shipment = useSelector(getShipment);
+    
     const {Header, Footer, Sider, Content} = Layout;
-
     const dispatch = useDispatch();
+
+    useEffect(() =>{
+        shipment && setOrder(shipment?.orders[0])
+    },[shipment])
 
     const columns = [
         {
@@ -113,24 +119,23 @@ const Shipment = () => {
                                 </Col>
                             </Row>
                         </Layout>
-                    {/* </Header> */}
                     <Layout>
                         <Sider className = {"sidebar"}>
                             <Col className = {"order-card-container"}>
-                                <Row gutter={16} className="col-scroll" >
-                                        <OrderCard/>
-                                </Row>
+                                {
+                                    shipment?.orders?.map(m => 
+                                        <OrderCard data={m} setOrder={setOrder} order={order} />
+                                        )
+                                }
                             </Col>
                             <Button type="primary" shape="round" className={"review-btn"} onClick={()=>{setEvtType(evtType=='entry'?'bol':'entry')}}>
                                 <span className="btn-text">{evtType=='entry'?'REVIEW BOL':'RETURN'}</span></Button>
                         </Sider>
                         <Layout>
                             {evtType=='entry'?
-                                <EntryScreen/> : <BolScreen/>
+                                <EntryScreen order={order} /> : <BolScreen/>
                             }
                         </Layout>
-
-                        {/* <EntryScreen/> */}
                     </Layout>
                 </Layout>
             </section>

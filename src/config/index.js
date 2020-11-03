@@ -6,7 +6,7 @@ const config = {
 
     api: {
         domains: {
-            checkIn: `${dev.BASE_URL}/checkin`,
+            shipment: `${dev.BASE_URL}/shipment`,
         }
     }
 }

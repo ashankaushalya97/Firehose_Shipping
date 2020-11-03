@@ -1,17 +1,14 @@
 import {createSelector} from 'reselect';
+import shipmentData from '../mockData/shipmentData';
 
-const checkinReducer = state => state.checkInReducer;
+const shipmentReducer = state => state.shipmentReducer;
 
-const getCheckIn = createSelector(
-    checkinReducer,
-    currentState => currentState.checkin_data
+const getShipment = createSelector(
+    shipmentReducer,
+    currentState => currentState.shipment_data
 );
-const getPdfUrl = createSelector(
-    checkinReducer,
-    currentState => currentState.pdfUrl
-);
+
 
 export {
-    getCheckIn,
-    getPdfUrl
+    getShipment
 }

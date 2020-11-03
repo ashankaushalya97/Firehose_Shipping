@@ -4,16 +4,14 @@ import ItemCard from "../../components/item-card/item-card";
 import ItemDetails from "../../components/item-details/item-details";
 import OrderLevelNotes from "../../components/order-level-notes/order-level-notes";
 import {useDispatch, useSelector} from "react-redux";
-import {getCheckIn, getPdfUrl} from "../../selectors";
-import {getCheckinData, saveCheckin} from "../../action";
-
 import "./styles.css"
 import "antd/dist/antd.css";
 import moment from 'moment';
 
 
 
-const EntryScreen = () => {
+const EntryScreen = ({order}) => {
+
     const columns = [
         {
             title: 'TYPE',
@@ -54,8 +52,13 @@ const EntryScreen = () => {
         <Content className={"mainContent"}>
             <Col span={20} className={"topDetailsRow"}>
                 <div className="item-container">
-                        <ItemCard/>
-                        <ItemCard/>
+                        {/* <ItemCard/>
+                        <ItemCard/> */}
+                        {
+                            order?.items.map(m =>
+                                <ItemCard data={m?.item} />    
+                            )
+                        }
                 </div>
             </Col>
 

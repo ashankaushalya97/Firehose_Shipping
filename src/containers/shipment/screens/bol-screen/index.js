@@ -71,65 +71,8 @@ const BolScreen = () => {
         //             className="btn-text-checkin">CHECK IN</span></Button> : null)
         // },
     ];
-    const [selectedRow, setSelectedRow] = useState();
-    const [customer, setCustomer] = useState('');
-    const [orderNo, setOrderNo] = useState('');
-    const [poNo, setPO] = useState('');
-    const [confNo, setConfNo] = useState('');
-    const [carrier, setCarrier] = useState();
-    const [truck, setTruck] = useState();
-    const [inbound, setInbound] = useState();
-    const [outbound, setOutbound] = useState();
-    let date = new Date();
-
 
     const {Content} = Layout;
-
-    const dispatch = useDispatch();
-
-    let checkInData = useSelector(getCheckIn);
-
-    let inboundData = [];
-    let outboundData = [];
-
-    useEffect(() => {
-        dispatch(getCheckinData());
-    }, []);
-
-    if (checkInData && checkInData?.appointments?.length > 0) {
-        inboundData = checkInData?.appointments.filter(n => n.direction == 'I');
-        outboundData = checkInData?.appointments.filter(n => n.direction == 'O');
-    }
-    const handleRefresh = () => {
-        clearFields();
-        dispatch(getCheckinData());
-    }
-    const handleSubmit = (record) => {
-        let obj = {
-            'conf_no': record.conf_no,
-            'checkin': {
-                'checkin_no': '',
-                'checkin_time': moment(date).format('HH:mm'),
-                'checkin_date': moment(date).format('YYYY-MM-DD'),
-                'carrier': carrier,
-                'truck_no': truck,
-            }
-        }
-        dispatch(saveCheckin(obj));
-        handleRefresh();
-    }
-
-    const clearFields = () => {
-        setSelectedRow(undefined);
-        setInbound(undefined);
-        setOutbound(undefined);
-        setCustomer('');
-        setOrderNo('');
-        setPO('');
-        setConfNo('');
-        setTruck('');
-        setCarrier('');
-    }
     return (
         <Content className={"mainContent"}>
             <Col span={20} className={"topDetailsRow"}>
@@ -146,7 +89,6 @@ const BolScreen = () => {
                     <div className="table-wrapper outbound-table">
                         <Table
                             columns={columns}
-                            dataSource={outbound ? outbound : outboundData}
                             bordered
                             pagination={false}
                             size="small"

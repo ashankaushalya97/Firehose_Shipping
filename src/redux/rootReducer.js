@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import checkInReducer from '../containers/shipment/reducer';
+import shipmentReducer from '../containers/shipment/reducer';
 
 const rootReducer = combineReducers({
-    checkInReducer,
+    shipmentReducer,
 })
 
 export default rootReducer;

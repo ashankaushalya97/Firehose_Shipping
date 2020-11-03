@@ -3,4 +3,28 @@
     background-color:#515A5A;
     margin:10px 5px 10px 15px;
     padding:0;
+    width: 175px;
+    /* display: block; */
+    /* color: white !important; */
+}
+.border{
+    border-color: #82E0AA;
+    border-width: 2px;
+}
+.card-body{
+    padding-right: 2px;
+}
+.card-text{
+    color: white;
+    font-weight: 600;
+    font-size: 10px;
+    display: block;
+    margin-right: 10px;
+}
+.status-text{
+    color: white;
+    font-weight: 600;
+    font-size: 8px;
+    display: block;
+    margin-top: 50%;
 }
