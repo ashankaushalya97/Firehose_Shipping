@@ -4,7 +4,7 @@ import {Button, Col, Input, Row} from "antd";
 const BolOrderLevelNotes = () => {
     const {TextArea} = Input;
     return (
-        <React.Fragment>
+        <>
             <TextArea
             rows={4}
             style={{width: "60%", margin: "20px"}}
@@ -25,7 +25,7 @@ const BolOrderLevelNotes = () => {
                     </Col>
                 </Col>
             </Row>
-        </React.Fragment>
+        </>
     )
 }
 

@@ -14,54 +14,62 @@ import "./styles.css"
 const BolScreen = () => {
     const columns = [
         {
-            title: 'Time',
+            title: 'S.NO',
             dataIndex: 'time',
         },
         {
-            title: 'APPT CONF. NO',
+            title: 'ITEM CODE',
             className: 'column-money',
             dataIndex: 'conf_no',
-            align: 'right',
+            // align: 'right',
         },
         {
-            title: 'CUSTOMER',
+            title: 'DESCRIPTION',
             dataIndex: 'customer',
         },
         {
-            title: 'CARRIER',
-            dataIndex: 'checkin',
-            align: 'center',
-            //   render: (text,record,index) => (!record.checkInNo? <Input defaultValue={text} bordered={false}/> : <span>{text}</span>)
-            render: (data, record, index) => (record.checkin ?
-                <span style={{textAlign: 'center', justifyContent: 'center'}}>{data?.carrier}</span> :
-                <Input value={carrier} bordered={false} disabled={record.checkin} onChange={(e) => {
-                    setCarrier(e.target.value)
-                }}/>)
+            title: 'REQ ITEM QTY',
+            dataIndex: 'customer',
         },
         {
-            title: 'TRUCK',
-            dataIndex: 'checkin',
-            render: (data, record, index) => (record.checkin ? <span>{data?.truck_no}</span> :
-                <Input value={truck} bordered={false} disabled={record.checkin} onChange={(e) => {
-                    setTruck(e.target.value)
-                }}/>)
+            title: 'PICK ITEM QTY',
+            dataIndex: 'customer',
         },
-        {
-            title: 'CHECK-IN NO',
-            dataIndex: 'checkin',
-            render: (data, record, index) => data ? data?.checkin_no : ''
-        },
-        {
-            title: 'PENDING',
-            dataIndex: 'pending',
-            render: (value, record, index) => (!record?.checkin?.checkin_no ?
-                <Button disabled={!(carrier && truck)} onClick={(e) => {
-                    e.stopPropagation();
-                    handleSubmit(record)
-                }} type="primary" shape="round"
-                        style={{background: "#F4D03F", borderColor: "#FCF3CF", color: "#000000"}}><span
-                    className="btn-text-checkin">CHECK IN</span></Button> : null)
-        },
+        // {
+        //     title: 'CARRIER',
+        //     dataIndex: 'checkin',
+        //     align: 'center',
+        //     //   render: (text,record,index) => (!record.checkInNo? <Input defaultValue={text} bordered={false}/> : <span>{text}</span>)
+        //     render: (data, record, index) => (record.checkin ?
+        //         <span style={{textAlign: 'center', justifyContent: 'center'}}>{data?.carrier}</span> :
+        //         <Input value={carrier} bordered={false} disabled={record.checkin} onChange={(e) => {
+        //             setCarrier(e.target.value)
+        //         }}/>)
+        // },
+        // {
+        //     title: 'TRUCK',
+        //     dataIndex: 'checkin',
+        //     render: (data, record, index) => (record.checkin ? <span>{data?.truck_no}</span> :
+        //         <Input value={truck} bordered={false} disabled={record.checkin} onChange={(e) => {
+        //             setTruck(e.target.value)
+        //         }}/>)
+        // },
+        // {
+        //     title: 'CHECK-IN NO',
+        //     dataIndex: 'checkin',
+        //     render: (data, record, index) => data ? data?.checkin_no : ''
+        // },
+        // {
+        //     title: 'PENDING',
+        //     dataIndex: 'pending',
+        //     render: (value, record, index) => (!record?.checkin?.checkin_no ?
+        //         <Button disabled={!(carrier && truck)} onClick={(e) => {
+        //             e.stopPropagation();
+        //             handleSubmit(record)
+        //         }} type="primary" shape="round"
+        //                 style={{background: "#F4D03F", borderColor: "#FCF3CF", color: "#000000"}}><span
+        //             className="btn-text-checkin">CHECK IN</span></Button> : null)
+        // },
     ];
     const [selectedRow, setSelectedRow] = useState();
     const [customer, setCustomer] = useState('');
@@ -134,18 +142,20 @@ const BolScreen = () => {
             <BolOrderDetails/>
 
             <Row gutter={16} style={{minHeight: "200px"}}>
-                <div className="table-wrapper outbound-table">
-                    <Table
-                        columns={columns}
-                        dataSource={outbound ? outbound : outboundData}
-                        bordered
-                        pagination={false}
-                        size="small"
-                        rowClassName="table-row"
-                        scroll={{y: 100, x: 'max-content'}}
-                        className = "tableDetails"
-                    />
-                </div>
+                <Col span={24}>
+                    <div className="table-wrapper outbound-table">
+                        <Table
+                            columns={columns}
+                            dataSource={outbound ? outbound : outboundData}
+                            bordered
+                            pagination={false}
+                            size="small"
+                            rowClassName="table-row"
+                            scroll={{y: 100, x: 'max-content'}}
+                            className = "tableDetails"
+                        />
+                    </div>
+                </Col>
             </Row>
             <BolOrderLevelNotes />
         </Content>

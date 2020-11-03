@@ -51,17 +51,13 @@ const EntryScreen = () => {
 
     return(
         <>
-        {/* <Content className={"mainContent"} style={{backgroundColor:'lightcyan'}}> */}
-            {/* <Col span={20} className={"topDetailsRow"}> */}
-                <Row gutter={16} className="item-container">
+        <Content className={"mainContent"}>
+            <Col span={20} className={"topDetailsRow"}>
+                <div className="item-container">
                         <ItemCard/>
                         <ItemCard/>
-                        <ItemCard/>
-                        <ItemCard/>
-                        <ItemCard/>
-                        <ItemCard/>
-                </Row>
-            {/* </Col> */}
+                </div>
+            </Col>
 
             <ItemDetails/>
 
@@ -83,7 +79,7 @@ const EntryScreen = () => {
             </Row>
 
             <OrderLevelNotes />
-         {/* </Content> */}
+         </Content>
         </>
     )
 }

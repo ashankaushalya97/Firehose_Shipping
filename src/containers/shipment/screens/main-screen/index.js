@@ -11,82 +11,11 @@ import EntryScreen from "../entry-screen";
 import BolScreen from "../bol-screen";
 
 const Shipment = () => {
-    const [selectedRow, setSelectedRow] = useState();
-    const [customer, setCustomer] = useState('');
-    const [orderNo, setOrderNo] = useState('');
-    const [poNo, setPO] = useState('');
-    const [confNo, setConfNo] = useState('');
-    const [carrier, setCarrier] = useState();
-    const [truck, setTruck] = useState();
-    const [inbound, setInbound] = useState();
-    const [outbound, setOutbound] = useState();
-    let date = new Date();
-
+    const [evtType,setEvtType] = useState('entry');
     const {Header, Footer, Sider, Content} = Layout;
 
     const dispatch = useDispatch();
 
-    let checkInData = useSelector(getCheckIn);
-    let pdfUrl = useSelector(getPdfUrl);
-
-    let inboundData = [];
-    let outboundData = [];
-
-    useEffect(() => {
-        dispatch(getCheckinData());
-    }, []);
-
-    if (checkInData && checkInData?.appointments?.length > 0) {
-        inboundData = checkInData?.appointments.filter(n => n.direction == 'I');
-        outboundData = checkInData?.appointments.filter(n => n.direction == 'O');
-    }
-
-    const handleSelection = (record) => {
-        record?.checkin ? (selectedRow === record ? setSelectedRow(undefined) : setSelectedRow(record)) : setSelectedRow(undefined);
-    }
-    const handleSearch = () => {
-        if (customer || orderNo || poNo || confNo) {
-            setInbound(inboundData.filter(n => n.customer.toLowerCase().includes(customer.toLowerCase())
-                && n.conf_no.includes(confNo) && n.orders.some(m => m.order_no.toLowerCase().includes(orderNo.toLowerCase()) && m.po_no.toLowerCase().includes(poNo.toLowerCase()))
-            ));
-            setOutbound(outboundData.filter(n => n.customer.toLowerCase().includes(customer.toLowerCase())
-                && n.conf_no.includes(confNo) && n.orders.some(m => m.order_no.toLowerCase().includes(orderNo.toLowerCase()) && m.po_no.toLowerCase().includes(poNo.toLowerCase()))
-            ));
-        }
-    }
-    const handleClear = () => {
-        clearFields();
-    }
-    const handleRefresh = () => {
-        clearFields();
-        dispatch(getCheckinData());
-    }
-    const handleSubmit = (record) => {
-        let obj = {
-            'conf_no': record.conf_no,
-            'checkin': {
-                'checkin_no': '',
-                'checkin_time': moment(date).format('HH:mm'),
-                'checkin_date': moment(date).format('YYYY-MM-DD'),
-                'carrier': carrier,
-                'truck_no': truck,
-            }
-        }
-        dispatch(saveCheckin(obj));
-        handleRefresh();
-    }
-
-    const clearFields = () => {
-        setSelectedRow(undefined);
-        setInbound(undefined);
-        setOutbound(undefined);
-        setCustomer('');
-        setOrderNo('');
-        setPO('');
-        setConfNo('');
-        setTruck('');
-        setCarrier('');
-    }
     const columns = [
         {
             title: 'TYPE',
@@ -155,48 +84,32 @@ const Shipment = () => {
         // },
     ];
 
-    const TableHeader = ({type}) => {
-        return (
-            <>
-                <Row>
-                    <Col span={6} className="completed">
-                        <span
-                            className="table-status-text">COMPLETED: {type === 'i' ? inboundData.filter(m => m?.checkin).length : outboundData.filter(m => m?.checkin).length}</span>
-                    </Col>
-                    <Col span={12}>
-                        <h3 className="table-header">{type === 'i' ? 'INBOUND' : 'OUTBOUND'}</h3>
-                    </Col>
-                    <Col span={6} className="pending">
-                        <span
-                            className="table-status-text">PENDING: {type === 'i' ? inboundData.filter(m => !m?.checkin).length : outboundData.filter(m => !m?.checkin).length}</span>
-                    </Col>
-                </Row>
-            </>
-        )
-    };
 
     return (
         <>
             <section>
                 <Layout>
-                    {/* <Header className={"mainHeader"}> */}
-                        {/* <Row>
-                            <Col span={10} style={{backgroundColor:'red',height:'100%'}} >
-                                <h1 className={"main-heading"}>SHIPPING CONFIRMATION PAGE</h1>
-                            </Col>    
-                        </Row> */}
                         <Layout>
                             <Row>
                                 {/* <Col span={4} style={{minHeight:"100vh",backgroundColor:"#D5DBDB"}}></Col> */}
                                 <Col span={4} style={{height:"100px",backgroundColor:"#D5DBDB"}}></Col>
                                 <Col span={4} style={{height:"100px",backgroundColor:"#D5DBDB"}}></Col>
                                 <Col span={8} className="title-container" style={{height:"100px",backgroundColor:"#D5DBDB"}}>
-                                {/* <Col className="title-container" span={12}> */}
                                     <h2 className="title">SHIPPING CONFIRMATION PAGE</h2>
-                                {/* </Col> */}
                                 </Col>
-                                <Col span={8} className="sub-title-container" style={{height:"100px",backgroundColor:"#D5DBDB"}}>
-                                    <div className="sub-title" >ENTRY SCREEN</div>
+                                <Col span={5} className="sub-title-container" style={{height:"100px",backgroundColor:"#D5DBDB"}}>
+                                    <div className="sub-title" >{evtType=='entry'?'ENTRY':'BOL'} SCREEN</div>
+                                </Col>
+                                <Col span={3}className="btn-search-container" style={{height:"100px",backgroundColor:"#D5DBDB",padding:'5px'}}>
+                                {
+                                    evtType=='entry'?
+                                    <>
+                                    <Input  className="search-text" placeholder="CHECK-IN NO" size="small" />
+                                    <Button className="btn-input btn-search" type="primary" shape="round" style={{ background: "#515A5A", borderColor: "#000000 " }}  ><span className="btn-text">RETRIEVE</span></Button>
+                                    </>
+                                    : <></>
+                                }    
+                                
                                 </Col>
                             </Row>
                         </Layout>
@@ -206,55 +119,20 @@ const Shipment = () => {
                             <Col className = {"order-card-container"}>
                                 <Row gutter={16} className="col-scroll" >
                                         <OrderCard/>
-                                        <OrderCard/>
-                                        <OrderCard/>
-                                        <OrderCard/>
-                                        <OrderCard/>
                                 </Row>
                             </Col>
-                            <Button type="primary" shape="round" className={"review-btn"}>
-                                <span className="btn-text">REVIEW BOL</span></Button>
+                            <Button type="primary" shape="round" className={"review-btn"} onClick={()=>{setEvtType(evtType=='entry'?'bol':'entry')}}>
+                                <span className="btn-text">{evtType=='entry'?'REVIEW BOL':'RETURN'}</span></Button>
                         </Sider>
                         <Layout>
-                            {/* <Table
-                                columns={columns}
-                                // dataSource={outbound ? outbound : outboundData}
-                                bordered
-                                pagination={false}
-                                size="small"
-                                rowClassName="table-row"
-                                scroll={{y: 100, x: 'max-content'}}
-                                className = "tableDetails"
-                            /> */}
-                            <EntryScreen/>
+                            {evtType=='entry'?
+                                <EntryScreen/> : <BolScreen/>
+                            }
                         </Layout>
 
                         {/* <EntryScreen/> */}
                     </Layout>
                 </Layout>
-                {/* <Row gutter={8}>
-                    <Col span={4} style={{height:"100px",backgroundColor:"#D5DBDB"}}></Col>
-                    <Col span={4} style={{height:"100px",backgroundColor:"#D5DBDB"}}></Col>
-                    <Col span={8} className="title-container" style={{height:"100px",backgroundColor:"#D5DBDB"}}>
-                        <h2 className="title">SHIPPING CONFIRMATION PAGE</h2>
-                    </Col>
-                    <Col span={8} className="sub-title-container" style={{height:"100px",backgroundColor:"#D5DBDB"}}>
-                        <div className="sub-title" >ENTRY SCREEN</div>
-                    </Col>
-                </Row>
-                <Row >
-                    <Col span={4} style={{minHeight:"85vh",backgroundColor:"#D5DBDB"}}>
-                        <Row gutter={16} justify="space-around" align="middle">
-                            <Col span={20} style={{height:"100px",backgroundColor:"#566573",margin:"10px 5px 10px 5px",padding:0}}></Col>
-                            <Col span={20} style={{height:"100px",backgroundColor:"#566573",margin:"10px 5px 10px 5px",padding:0}}></Col>
-                        </Row>
-                    </Col>
-                    <Col span={20} style={{height:"120px",backgroundColor:"yellow",display:"inline"}}>
-                        <Row gutter={16}>
-                            <Col span={4} style={{height:"100px",backgroundColor:"#566573",margin:"10px 5px 10px 5px",padding:0,display:"inline"}}></Col>
-                        </Row>
-                    </Col>
-                </Row> */}
             </section>
         </>
     );

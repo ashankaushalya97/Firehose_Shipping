@@ -1,5 +1,6 @@
 .mainContent{
     background-color: white;
+    /* max-height: 100vh; */
 }
 .topDetailsRow{
     height: 120px;
