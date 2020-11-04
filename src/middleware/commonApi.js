@@ -8,6 +8,9 @@ const commonApi = {
     getShipmentData: () => {
       return axios.get(`${shipmentDomain}`);
     },
+    saveRecordDetails: () => {
+      return axios.post(`${shipmentDomain}`);
+    },
 }
 
 export default commonApi;

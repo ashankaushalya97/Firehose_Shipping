@@ -51,14 +51,26 @@ const shipmentData = {
                     },
                     'tracking_units': [
                         { 
-                            'wh_tracking_no':'WH908', 
+                            'wh_tracking_no':'WB123', 
                             'cust_tracking_no': 'CST12', 
-                            'cust_tracking_label':'LAK', 
+                            'cust_tracking_label':'DHL XX', 
                             'expiry_date': '2020-12-28', 
                             'committed_qty': 6, 
                             'avail_qty': 5, 
-                            'location':'Tokyo', 
-                            'committed_type':'ASD', 
+                            'location':'Japan', 
+                            'committed_type':'SCH', 
+                            'picked_qty':10, 
+                            'tu_notes':'Sample Not'
+                        },
+                        { 
+                            'wh_tracking_no':'WH8973', 
+                            'cust_tracking_no': 'CST12', 
+                            'cust_tracking_label':'PRONTO', 
+                            'expiry_date': '2020-12-28', 
+                            'committed_qty': 6, 
+                            'avail_qty': 5, 
+                            'location':'LA', 
+                            'committed_type':'DMC', 
                             'picked_qty':10, 
                             'tu_notes':'Sample Not'
                         },

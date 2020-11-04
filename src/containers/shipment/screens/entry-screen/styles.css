@@ -14,7 +14,8 @@
 }
 
 .table-wrapper .tableDetails{
-    padding: 20px;
+    padding: 10px 20px 10px 20px !important;
+    /* padding: 10px !important; */
 }
 .item-container{
     overflow-x: scroll ;
@@ -28,3 +29,33 @@
 .item-container::-webkit-scrollbar {
     display: none;
 }
+/* orderNotes */
+.text-area{
+    width: 60%;
+    margin: 20px;
+    border-radius: 6px;
+    border-color: rgb(124, 124, 124);
+}
+
+.row1{
+    padding: 20px;
+}
+
+.text-field{
+    background-color: #ffffff;
+    border-radius: 6px;
+    border-color: rgb(124, 124, 124);
+    margin-right: 10px !important;
+}
+
+.btn-no-tag{
+    /* background: #515A5A;
+    border-color:#000000; */
+    margin-left: 10px !important;
+}
+
+/* .btn-no-tag:hover{
+    background-color: #515A5A;
+    background-color: #515A5A;
+
+} */

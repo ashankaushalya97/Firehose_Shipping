@@ -11,7 +11,6 @@ import BolScreen from "../bol-screen";
 
 const Shipment = () => {
     const [evtType,setEvtType] = useState('entry');
-    const [items,setItems] = useState([]);
     const [order,setOrder] = useState();
     const shipment = useSelector(getShipment);
     

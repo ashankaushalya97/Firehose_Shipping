@@ -7,8 +7,13 @@ const getShipment = createSelector(
     shipmentReducer,
     currentState => currentState.shipment_data
 );
+const getRecord = createSelector(
+    shipmentReducer,
+    currentState => currentState.newRecord
+);
 
 
 export {
-    getShipment
+    getShipment,
+    getRecord
 }
