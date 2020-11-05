@@ -43,7 +43,7 @@ const shipmentData = {
             'items': [
                 { 
                     'item': {
-                        'item_code':'DS72', 
+                        'item_code':'G01', 
                         'alt_item_code':'K12', 
                         'item_descr':'GARRET TURBO', 
                         'req_item_qty':5, 
@@ -78,7 +78,7 @@ const shipmentData = {
                 },
                 { 
                     'item': {
-                        'item_code':'SDL72', 
+                        'item_code':'G02', 
                         'alt_item_code':'K12', 
                         'item_descr':'HKS FILTER', 
                         'req_item_qty':10, 
@@ -132,7 +132,7 @@ const shipmentData = {
             'items': [
                 { 
                     'item': {
-                        'item_code':'TS22', 
+                        'item_code':'G03', 
                         'alt_item_code':'K12', 
                         'item_descr':'TOYO TYRES', 
                         'req_item_qty':4, 
@@ -155,7 +155,7 @@ const shipmentData = {
                 },
                 { 
                     'item': {
-                        'item_code':'G987', 
+                        'item_code':'G04', 
                         'alt_item_code':'K12', 
                         'item_descr':'EVO TURBO', 
                         'req_item_qty':5, 

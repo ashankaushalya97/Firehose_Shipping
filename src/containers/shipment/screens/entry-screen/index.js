@@ -13,7 +13,7 @@ import {getRecord} from '../../selectors'
 const {TextArea} = Input;
 const {Content} = Layout;
 
-const EntryScreen = ({order}) => {
+const EntryScreen = ({order,setOrder}) => {
     const [item,setItem] = useState();
     const [notes,setNotes] = useState();
     const [trackingNo,setTrackingNo] = useState('');
@@ -28,12 +28,11 @@ const EntryScreen = ({order}) => {
        order && setItem(order?.items[0])
     },[order])
     useEffect(()=>{
+        console.log('item ::: ',item);
        item && setTrackingData(item.tracking_units)
-       console.log('item ::: ',item);
     },[item])
     useEffect(()=>{
         console.log('trk :::::: ',trackingData);
-        // item && setItem(item.tracking_units = trackingData)
     },[trackingData])
 
     useEffect(()=>{
@@ -51,9 +50,19 @@ const EntryScreen = ({order}) => {
         }
     }
 
-    const handleEdit = (val,record) => {
+    const handleQtyEdit = (val,record) => {
         record.picked_qty = parseInt(val)
-        setTrackingData(trackingData.map(m => (m.picked_qty == record.picked_qty ? record : m)));
+        item.tracking_units = trackingData.map(m => (m.picked_qty == record.picked_qty ? record : m));
+        order.items = order.items.map(m=> (m.item.item_code==item.item.item_code) ? item: m);
+        setOrder(pre => ({...pre,order}));
+        setItem(pre => ({...pre,item}));
+    }
+    const handleNotesEdit = (val,record) => {
+        record.tu_notes = val
+        item.tracking_units = trackingData.map(m => (m.tu_notes == record.tu_notes ? record : m));
+        order.items = order.items.map(m=> (m.item.item_code==item.item.item_code) ? item: m);
+        setOrder(pre => ({...pre,order}));
+        setItem(pre => ({...pre,item}));
     }
 
     const columns = [
@@ -84,13 +93,15 @@ const EntryScreen = ({order}) => {
             title: 'PICKED',
             dataIndex: 'picked_qty',
             render: (data, record, index) => (<Input defaultValue={data} bordered={false} 
-                onChange={(e)=>{handleEdit(e.target.value,record)}} 
+                onChange={(e)=>{handleQtyEdit(e.target.value,record)}} 
                 />)
         },
         {
             title: 'NOTES',
             dataIndex: 'tu_notes',
-            render: (data, record, index) => (<Input defaultValue={data} bordered={false} />)
+            render: (data, record, index) => (<Input defaultValue={data} bordered={false} 
+                onChange={(e)=>{handleNotesEdit(e.target.value,record)}}
+            />)
         },
     ];
 
@@ -102,7 +113,7 @@ const EntryScreen = ({order}) => {
             <Col span={20} className={"topDetailsRow"}>
                 <div className="item-container">
                         {
-                            order?.items.map(m =>
+                            order?.items?.map(m =>
                                 <ItemCard data={m} setItem={setItem} init={item} />    
                             )
                         }

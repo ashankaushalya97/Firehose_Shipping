@@ -20,6 +20,9 @@ const Shipment = () => {
     useEffect(() =>{
         shipment && setOrder(shipment?.orders[0])
     },[shipment])
+    useEffect(() =>{
+        console.log('order :::: ',order);
+    },[order])
 
     const columns = [
         {
@@ -132,7 +135,7 @@ const Shipment = () => {
                         </Sider>
                         <Layout>
                             {evtType=='entry'?
-                                <EntryScreen order={order} /> : <BolScreen/>
+                                <EntryScreen order={order} setOrder={setOrder} /> : <BolScreen/>
                             }
                         </Layout>
                     </Layout>
