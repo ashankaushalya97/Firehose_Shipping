@@ -1,6 +1,23 @@
 import React from "react"
 import {Col, Row} from "antd";
 
+
+const formId = new URLSearchParams(search).get('id') || "";
+    const tabContent = [
+        {
+            label: "Form Details", 
+            content: "Test"
+        },
+        {
+            label: "Edit Fields",
+            content: "Test"
+        },
+        {
+            label: "Share Form",
+            content: "Test"  
+        },
+    ]
+
 const BolOrderDetails = () => {
     return(
         <Col span={20} style={{height: "120px", display: "inline"}}>
